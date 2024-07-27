@@ -1,0 +1,59 @@
+---
+- hosts: localhost
+  connection: local
+  become: true
+  tasks: 
+    - name: Install python utilities
+      package:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - pyenv
+        - pipx
+
+    - name: install pipx tools
+      pipx:
+        name: "{{ item }}"
+      with_items:
+        - black
+        - ruff
+        - poetry
+        - dvc[s3]
+
+    - name: install apt packages
+      package:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - gnome-tweaks
+        - gnome-shell-extensions
+        - ulauncher
+        - htop
+        - nvim
+        - zsh
+        - oh-my-zsh
+        - font-inter
+        - font-fira-code
+        - font-jetbrains-mono
+        - font-ibm-plex
+        - gimp
+        - dconf-cli
+
+    - name: install flycli
+      command: curl -sL https://fly.io/install.sh | sh
+      args:
+        creates: /usr/local/bin/fly
+
+    - name: install docker
+      command: curl -fsSL https://get.docker.com -o get-docker.sh
+    - name: install docker
+      command: sh get-docker.sh
+    - name: install docker
+      command: sudo usermod -aG docker $USER
+    - name: install docker  
+      command: sudo systemctl enable docker
+    - name: install docker
+      command: sudo systemctl start docker
+
+    - name: install docker-compose
+    
