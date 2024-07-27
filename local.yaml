@@ -11,12 +11,11 @@
         - gnome-shell-extensions
         - ulauncher
         - htop
-        - nvim
+        - neovim
         - zsh
-        - oh-my-zsh
-        - font-inter
-        - font-fira-code
-        - font-ibm-plex
+        - fonts-inter
+        - fonts-firacode
+        - fonts-ibm-plex
         - gimp
         - dconf-cli
 
