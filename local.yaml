@@ -9,7 +9,7 @@
       with_items:
         - gnome-tweaks
         - gnome-shell-extensions
-        - ulauncher
+        - rofi
         - htop
         - neovim
         - zsh
