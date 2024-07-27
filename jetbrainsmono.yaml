@@ -1,0 +1,25 @@
+# install_jetbrains_mono.yml
+- name: Download JetBrains Mono font
+  get_url:
+    url: https://download.jetbrains.com/fonts/JetBrainsMono-1.0.0.zip
+    dest: /tmp/JetBrainsMono-1.0.0.zip
+
+- name: Unzip JetBrains Mono font
+  unarchive:
+    src: /tmp/JetBrainsMono-1.0.0.zip
+    dest: /tmp/
+    remote_src: yes
+
+- name: Create user font directory if it does not exist
+  file:
+    path: ~/.fonts
+    state: directory
+    mode: '0755'
+  when: "'~/.fonts' not in ansible_facts['user_dirs']"
+
+- name: Move fonts to user font directory
+  command: mv /tmp/JetBrainsMono-*.ttf ~/.fonts/
+  when: ansible_user_id != 'root'
+
+- name: Update font cache
+  command: fc-cache -fv

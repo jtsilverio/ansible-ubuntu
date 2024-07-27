@@ -20,3 +20,6 @@
         - font-ibm-plex
         - gimp
         - dconf-cli
+
+    - name: Install JetBrains Mono font
+      import_tasks: install_jetbrains_mono.yml
