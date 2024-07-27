@@ -3,23 +3,6 @@
   connection: local
   become: true
   tasks: 
-    - name: Install python utilities
-      package:
-        name: "{{ item }}"
-        state: present
-      with_items:
-        - pyenv
-        - pipx
-
-    - name: install pipx tools
-      pipx:
-        name: "{{ item }}"
-      with_items:
-        - black
-        - ruff
-        - poetry
-        - dvc[s3]
-
     - name: install apt packages
       package:
         name: "{{ item }}"
@@ -38,8 +21,3 @@
         - font-ibm-plex
         - gimp
         - dconf-cli
-
-    - name: install flycli
-      command: curl -sL https://fly.io/install.sh | sh
-      args:
-        creates: /usr/local/bin/fly
