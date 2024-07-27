@@ -22,4 +22,4 @@
         - dconf-cli
 
     - name: Install JetBrains Mono font
-      import_tasks: jetbrainsmono.yml
+      import_tasks: jetbrainsmono.yaml
