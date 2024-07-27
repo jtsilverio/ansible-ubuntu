@@ -43,17 +43,3 @@
       command: curl -sL https://fly.io/install.sh | sh
       args:
         creates: /usr/local/bin/fly
-
-    - name: install docker
-      command: curl -fsSL https://get.docker.com -o get-docker.sh
-    - name: install docker
-      command: sh get-docker.sh
-    - name: install docker
-      command: sudo usermod -aG docker $USER
-    - name: install docker  
-      command: sudo systemctl enable docker
-    - name: install docker
-      command: sudo systemctl start docker
-
-    - name: install docker-compose
-    
