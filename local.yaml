@@ -2,6 +2,11 @@
   become: true
 
   pre_tasks:
+    - name: Ensure roles directory exists
+      file:
+        path: /etc/ansible/roles
+        state: directory
+
     - name: Install GNOME Extensions role from GitHub
       command: ansible-galaxy install git+https://github.com/luizgavalda/gnome_extensions.git,name=luizgavalda.gnome_extensions
       args:
