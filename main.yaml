@@ -1,18 +1,22 @@
 ---
 - hosts: localhost
-  become: true
 
-  tasks: 
+  vars:
+    user_home: "/home/{{ ansible_user }}"
+    user_name: "{{ ansible_user }}"
+
+  pre_tasks:
     - name: Ensure user directory variables are set
       set_fact:
         user_home: "/home/{{ ansible_user }}"
         user_name: "{{ ansible_user }}"
 
+  tasks:
     - name: Install APT packages
       import_tasks: tasks/apt.yaml
 
     - name: Install JetBrains Mono font
-      import_tasks: tasks/jetbrainsmono.yaml
+      import_tasks: tasks/fonts.yaml
       tags: fonts
     
     - name: Install ZOOM
@@ -36,14 +40,6 @@
       import_tasks: tasks/pyenv.yaml
       tags: python
 
-    - name: cpipx and python tools
+    - name: pipx and python tools
       import_tasks: tasks/pipx.yaml
       tags: dotfiles
-
-  roles:
-    - role: luizgavalda.gnome_extensions
-      vars:
-        gnome_extension_ids:
-          - 517
-          - 5410
-          - 1460
