@@ -1,46 +1,42 @@
-- name: Install GNOME Extensions
-  hosts: localhost
-  become: true
-  tasks:
-    - name: Ensure required packages are installed
-      apt:
-        name: 
-          - gnome-shell-extensions
-          - gnome-shell-extension-prefs
-        state: present
+- name: Ensure required packages are installed
+  apt:
+    name: 
+      - gnome-shell-extensions
+      - gnome-shell-extension-prefs
+    state: present
 
-    - name: Download and install GNOME extension Vitals
-      get_url:
-        url: "https://extensions.gnome.org/extension-data/vitalsjchiappone.gmail.com.v42.shell-extension.zip"
-        dest: /tmp/vitals.zip
-    - unarchive:
-        src: /tmp/vitals.zip
-        dest: ~/.local/share/gnome-shell/extensions/vitals@jchiappone.gmail.com
-        remote_src: yes
+- name: Download and install GNOME extension Vitals
+  get_url:
+    url: "https://extensions.gnome.org/extension-data/vitalsjchiappone.gmail.com.v42.shell-extension.zip"
+    dest: /tmp/vitals.zip
+- unarchive:
+    src: /tmp/vitals.zip
+    dest: ~/.local/share/gnome-shell/extensions/vitals@jchiappone.gmail.com
+    remote_src: yes
 
-    - name: Download and install GNOME extension Grand Theft Focus
-      get_url:
-        url: "https://extensions.gnome.org/extension-data/grand-theft-focusrewrittenmind.github.com.v4.shell-extension.zip"
-        dest: /tmp/grand-theft-focus.zip
-    - unarchive:
-        src: /tmp/grand-theft-focus.zip
-        dest: ~/.local/share/gnome-shell/extensions/grand-theft-focus@rewrittenmind.github.com
-        remote_src: yes
+- name: Download and install GNOME extension Grand Theft Focus
+  get_url:
+    url: "https://extensions.gnome.org/extension-data/grand-theft-focusrewrittenmind.github.com.v4.shell-extension.zip"
+    dest: /tmp/grand-theft-focus.zip
+- unarchive:
+    src: /tmp/grand-theft-focus.zip
+    dest: ~/.local/share/gnome-shell/extensions/grand-theft-focus@rewrittenmind.github.com
+    remote_src: yes
 
-    - name: Download and install GNOME extension Caffeine
-      get_url:
-        url: "https://extensions.gnome.org/extension-data/caffeinetakahirox.github.com.v39.shell-extension.zip"
-        dest: /tmp/caffeine.zip
-    - unarchive:
-        src: /tmp/caffeine.zip
-        dest: ~/.local/share/gnome-shell/extensions/caffeine@takahirox.github.com
-        remote_src: yes
+- name: Download and install GNOME extension Caffeine
+  get_url:
+    url: "https://extensions.gnome.org/extension-data/caffeinetakahirox.github.com.v39.shell-extension.zip"
+    dest: /tmp/caffeine.zip
+- unarchive:
+    src: /tmp/caffeine.zip
+    dest: ~/.local/share/gnome-shell/extensions/caffeine@takahirox.github.com
+    remote_src: yes
 
-    - name: Enable GNOME extension Vitals
-      shell: "gnome-extensions enable vitals@jchiappone.gmail.com"
+- name: Enable GNOME extension Vitals
+  shell: "gnome-extensions enable vitals@jchiappone.gmail.com"
 
-    - name: Enable GNOME extension Grand Theft Focus
-      shell: "gnome-extensions enable grand-theft-focus@rewrittenmind.github.com"
+- name: Enable GNOME extension Grand Theft Focus
+  shell: "gnome-extensions enable grand-theft-focus@rewrittenmind.github.com"
 
-    - name: Enable GNOME extension Caffeine
-      shell: "gnome-extensions enable caffeine@takahirox.github.com"
+- name: Enable GNOME extension Caffeine
+  shell: "gnome-extensions enable caffeine@takahirox.github.com"

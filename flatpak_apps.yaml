@@ -1,20 +1,16 @@
-- name: Install Flatpak applications
-  hosts: localhost
-  become: true
-  tasks:
-    - name: Ensure Flatpak is installed
-      package:
-        name: flatpak
-        state: present
+- name: Ensure Flatpak is installed
+  package:
+    name: flatpak
+    state: present
 
-    - name: Install Telegram Desktop
-      command: flatpak install flathub org.telegram.desktop -y
+- name: Install Telegram Desktop
+  command: flatpak install flathub org.telegram.desktop -y
 
-    - name: Install Spotify Client
-      command: flatpak install flathub com.spotify.Client -y
+- name: Install Spotify Client
+  command: flatpak install flathub com.spotify.Client -y
 
-    - name: Install Discord
-      command: flatpak install flathub com.discordapp.Discord -y
+- name: Install Discord
+  command: flatpak install flathub com.discordapp.Discord -y
 
-    - name: Install Zotero
-      command: flatpak install flathub org.zotero.Zotero -y
+- name: Install Zotero
+  command: flatpak install flathub org.zotero.Zotero -y
