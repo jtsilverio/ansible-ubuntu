@@ -33,3 +33,9 @@
 
     - name: Install GNOME Extensions
       import_tasks: tasks/gnome_extensions.yaml
+
+  roles:
+    - role: luizgavalda.gnome_extensions
+      vars:
+        gnome_extension_ids:
+          - 1460
