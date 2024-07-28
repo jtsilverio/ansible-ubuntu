@@ -26,16 +26,13 @@
         - calibre
 
     - name: Install JetBrains Mono font
-      import_tasks: jetbrainsmono.yaml
+      import_tasks: tasks/jetbrainsmono.yaml
     
     - name: Install Flatpak
-      import_tasks: flatpak.yaml
-    
-    - name: Install Flatpak APPS
-      import_tasks: flatpak_apps.yaml
+      import_tasks: tasks/flatpak.yaml
     
     - name: Install ZOOM
-      import_tasks: zoom.yaml
+      import_tasks: tasks/zoom.yaml
 
     - name: Install GNOME Extensions
-      import_tasks: gnome_extensions.yaml
+      import_tasks: tasks/gnome_extensions.yaml
