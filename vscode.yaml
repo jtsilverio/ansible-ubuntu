@@ -2,16 +2,16 @@
   hosts: localhost
   become: true
   tasks:
-    - name: Download Visual Studio Code .deb package
+    - name: Download Visual Studio Code deb package
       get_url:
         url: https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64
         dest: /tmp/vscode.deb
 
-    - name: Install Visual Studio Code .deb package
+    - name: Install Visual Studio Code deb package
       apt:
         deb: /tmp/vscode.deb
 
-    - name: Clean up downloaded .deb package
+    - name: Clean up downloaded deb package
       file:
         path: /tmp/vscode.deb
         state: absent
