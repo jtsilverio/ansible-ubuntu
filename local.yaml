@@ -28,9 +28,6 @@
     - name: Install JetBrains Mono font
       import_tasks: tasks/jetbrainsmono.yaml
     
-    - name: Install Flatpak
-      import_tasks: tasks/flatpak.yaml
-    
     - name: Install ZOOM
       import_tasks: tasks/zoom.yaml
 
