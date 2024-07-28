@@ -9,6 +9,7 @@
       with_items:
         - gnome-tweaks
         - gnome-shell-extensions
+        - gnome-shell-extension-prefs
         - rofi
         - htop
         - neovim
@@ -18,6 +19,23 @@
         - fonts-ibm-plex
         - gimp
         - dconf-cli
+        - r-base
+        - pandoc
+        - gnome-sushi
+        - s-tui
+        - calibre
 
     - name: Install JetBrains Mono font
       import_tasks: jetbrainsmono.yaml
+    
+    - name: Install VSCODE
+      import_tasks: vscode.yaml
+
+    - name: Install Flatpak
+      import_tasks: flatpak.yaml
+    
+    - name: Install ZOOM
+      import_tasks: zoom.yaml
+
+    - name: Install GNOME Extensions
+      import_tasks: gnome_extensions.yaml

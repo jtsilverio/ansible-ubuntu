@@ -1,0 +1,16 @@
+- name: Install Flatpak and configure Flathub
+  hosts: localhost
+  become: true
+  tasks:
+    - name: Install Flatpak for Ubuntu 18.10 and later
+      package:
+        name: flatpak
+        state: present
+
+    - name: Install Software Flatpak plugin
+      package:
+        name: gnome-software-plugin-flatpak
+        state: present
+
+    - name: Add Flathub repository
+      command: flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
