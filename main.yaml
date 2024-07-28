@@ -42,4 +42,8 @@
 
     - name: pipx and python tools
       import_tasks: tasks/pipx.yaml
-      tags: dotfiles
+      tags: pipx
+
+    - name: firefox configs
+      import_tasks: tasks/firefox.yaml
+      tags: firefox

@@ -1,0 +1,10 @@
+- name: Ensure Firefox config-prefs.js file exists with desired settings
+  blockinfile:
+    path: "/etc/firefox/defaults/pref/config-prefs.js"
+    create: yes
+    block: |
+      pref("media.ffmpeg.vaapi.enabled", true);
+      pref("media.ffvpx.enabled", false);
+    marker: "// {mark} ANSIBLE MANAGED BLOCK"
+  become: yes
+  become_method: sudo
