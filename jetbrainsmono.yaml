@@ -9,12 +9,17 @@
     dest: /tmp/
     remote_src: yes
 
+- name: Check if user font directory exists
+  stat:
+    path: ~/.fonts
+  register: fonts_dir
+
 - name: Create user font directory if it does not exist
   file:
     path: ~/.fonts
     state: directory
     mode: '0755'
-  when: "'~/.fonts' not in ansible_facts['user_dirs']"
+  when: not fonts_dir.stat.exists
 
 - name: Move fonts to user font directory
   command: mv /tmp/JetBrainsMono-*.ttf ~/.fonts/
