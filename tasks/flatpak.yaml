@@ -12,13 +12,21 @@
   command: flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
 - name: Install Telegram Desktop
-  command: flatpak install flathub org.telegram.desktop -y
+  flatpak:
+    name: org.telegram.desktop
+    state: present
 
 - name: Install Spotify Client
-  command: flatpak install flathub com.spotify.Client -y
+  flatpak:
+    name: com.spotify.Client
+    state: present
 
 - name: Install Discord
-  command: flatpak install flathub com.discordapp.Discord -y
+  flatpak:
+    name: com.discordapp.Discord
+    state: present
 
 - name: Install Zotero
-  command: flatpak install flathub org.zotero.Zotero -y
+  flatpak:
+    name: org.zotero.Zotero
+    state: present

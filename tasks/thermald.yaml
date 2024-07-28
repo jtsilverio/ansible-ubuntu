@@ -1,0 +1,11 @@
+- name: Stop thermald service
+  systemd:
+    name: thermald.service
+    state: stopped
+  become: true
+
+- name: Disable thermald service
+  systemd:
+    name: thermald.service
+    enabled: no
+  become: true

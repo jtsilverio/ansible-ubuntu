@@ -1,0 +1,23 @@
+- name: install apt packages
+  become: true
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - gnome-tweaks
+    - gnome-shell-extensions
+    - gnome-shell-extension-prefs
+    - rofi
+    - htop
+    - neovim
+    - zsh
+    - fonts-inter
+    - fonts-firacode
+    - fonts-ibm-plex
+    - gimp
+    - dconf-cli
+    - r-base
+    - pandoc
+    - gnome-sushi
+    - s-tui
+    - calibre

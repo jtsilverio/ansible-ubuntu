@@ -1,0 +1,51 @@
+- name: Ensure user directory variables are set
+  set_fact:
+    user_home: "/home/{{ ansible_user }}"
+    user_name: "{{ ansible_user }}"
+
+- name: install apt packages
+  become: true
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - fonts-inter
+    - fonts-firacode
+    - fonts-ibm-plex
+
+- name: Check if user font directory exists
+  stat:
+    path: "{{ user_home }}/.fonts"
+  register: fonts_dir
+
+- name: Create user font directory if it does not exist
+  file:
+    path: "{{ user_home }}/.fonts"
+    state: directory
+    owner: "{{ user_name }}"
+    group: "{{ user_name }}"
+    mode: '0755'
+  when: not fonts_dir.stat.exists
+
+- name: Download JetBrains Mono font
+  get_url:
+    url: https://download.jetbrains.com/fonts/JetBrainsMono-1.0.0.zip
+    dest: "{{ user_home }}/.fonts/JetBrainsMono-1.0.0.zip"
+    owner: "{{ user_name }}"
+    group: "{{ user_name }}"
+
+- name: Unzip JetBrains Mono font
+  unarchive:
+    src: "{{ user_home }}/.fonts/JetBrainsMono-1.0.0.zip"
+    dest: "{{ user_home }}/.fonts/"
+    owner: "{{ user_name }}"
+    group: "{{ user_name }}"
+    remote_src: yes
+
+- name: Clean up font zip file
+  file:
+    path: "{{ user_home }}/.fonts/JetBrainsMono-1.0.0.zip"
+    state: absent
+
+- name: Update font cache
+  command: fc-cache -fv

@@ -1,0 +1,33 @@
+- name: Install required packages
+  apt:
+    name: 
+      - git
+      - build-essential
+      - python3-dev
+      - libdbus-glib-1-dev
+      - libgirepository1.0-dev
+      - libcairo2-dev
+      - python3-venv
+      - python3-wheel
+    state: present
+  become: true
+
+- name: Clone throttled repository
+  git:
+    repo: https://github.com/erpalma/throttled.git
+    dest: /tmp/throttled
+    update: yes
+
+- name: Install throttled
+  command: sudo ./install.sh
+  args:
+    chdir: /tmp/throttled
+
+- name: Copy throttled.conf to /etc
+  copy:
+    src: files/throttled.conf
+    dest: /etc/throttled.conf
+    owner: root
+    group: root
+    mode: '0644'
+  become: true

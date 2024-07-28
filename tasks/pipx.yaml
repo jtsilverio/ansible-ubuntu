@@ -1,0 +1,27 @@
+
+- name: Install pipx
+  apt:
+    name: pipx
+    state: present
+  become: true
+
+- name: Ensure pipx path for current user
+  shell: pipx ensurepath
+  args:
+    executable: /bin/bash
+
+- name: Install pylint
+  community.general.pipx:
+    name: pylint
+
+- name: Install black
+  community.general.pipx:
+    name: black
+
+- name: Install ruff
+  community.general.pipx:
+    name: ruff
+
+- name: Install dvc with s3 support
+  community.general.pipx:
+    name: 'dvc[s3]'

@@ -1,3 +1,4 @@
 .PHONY: run
 run:
-	sudo ansible-pull -U https://github.com/jtsilverio/ansible-ubuntu.git local.yaml
+	ansible-galaxy install -r requirements.yaml -p ./roles
+	sudo ansible-playbook main.yaml

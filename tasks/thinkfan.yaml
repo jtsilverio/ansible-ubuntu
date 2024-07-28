@@ -1,0 +1,67 @@
+- name: Install required packages
+  apt:
+    name: 
+      - cmake-curses-gui
+      - build-essential
+      - cmake
+      - g++
+      - libyaml-cpp-dev
+      - pkg-config
+      - libsensors-dev
+    state: present
+  become: true
+
+- name: Clone thinkfan repository
+  git:
+    repo: https://github.com/vmatare/thinkfan.git
+    dest: /tmp/thinkfan
+    update: yes
+
+- name: Create build directory
+  file:
+    path: /tmp/thinkfan/build
+    state: directory
+
+- name: Run cmake
+  command: cmake -D CMAKE_BUILD_TYPE:STRING=Release ..
+  args:
+    chdir: /tmp/thinkfan/build
+  become: true
+
+- name: Run make
+  command: make
+  args:
+    chdir: /tmp/thinkfan/build
+  become: true
+
+- name: Install thinkfan
+  command: make install
+  args:
+    chdir: /tmp/thinkfan/build
+  become: true
+
+- name: Copy thinkfan.conf to /etc
+  copy:
+    src: files/thinkfan.conf
+    dest: /etc/thinkfan.conf
+    owner: root
+    group: root
+    mode: '0644'
+  become: true
+
+- name: Create thinkfan modprobe configuration
+  copy:
+    content: "options thinkpad_acpi fan_control=1 experimental=1\n"
+    dest: /etc/modprobe.d/thinkfan.conf
+    owner: root
+    group: root
+    mode: '0644'
+  become: true
+
+- name: Remove thinkpad_acpi module
+  command: modprobe -rv thinkpad_acpi
+  become: true
+
+- name: Insert thinkpad_acpi module with new options
+  command: modprobe -v thinkpad_acpi
+  become: true
