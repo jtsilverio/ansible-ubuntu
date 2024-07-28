@@ -28,11 +28,11 @@
     - name: Install JetBrains Mono font
       import_tasks: jetbrainsmono.yaml
     
-    - name: Install VSCODE
-      import_tasks: vscode.yaml
-
     - name: Install Flatpak
       import_tasks: flatpak.yaml
+    
+    - name: Install Flatpak APPS
+      import_tasks: flatpak_apps.yaml
     
     - name: Install ZOOM
       import_tasks: zoom.yaml
