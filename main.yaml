@@ -73,6 +73,11 @@
       tags: fly
 
 
+    - name: zsh
+      import_tasks: tasks/zsh.yaml
+      tags: zsh
+
+
   roles:
     - role: geerlingguy.docker
       vars:
