@@ -1,0 +1,25 @@
+- name: Set Ubuntu version variables
+  set_fact:
+    ubuntu_version_number: "{{ ansible_distribution_version }}"
+
+- name: Download MEGAsync package
+  get_url:
+    url: "https://mega.nz/linux/repo/xUbuntu_{{ ubuntu_version_number }}/amd64/megasync-xUbuntu_{{ ubuntu_version_number }}_amd64.deb"
+    dest: "/tmp/megasync-xUbuntu_{{ ubuntu_version_number }}_amd64.deb"
+
+- name: Install MEGAsync package
+  apt:
+    deb: "/tmp/megasync-xUbuntu_{{ ubuntu_version_number }}_amd64.deb"
+  become: true
+
+- name: Download MEGAsync Nautilus integration package
+  get_url:
+    url: "https://mega.nz/linux/repo/xUbuntu_{{ ubuntu_version_number }}/amd64/nautilus-megasync-xUbuntu_{{ ubuntu_version_number }}_amd64.deb"
+    dest: "/tmp/nautilus-megasync-xUbuntu_{{ ubuntu_version_number }}_amd64.deb"
+
+- name: Install MEGAsync Nautilus integration package
+  apt:
+    deb: "/tmp/nautilus-megasync-xUbuntu_{{ ubuntu_version_number }}_amd64.deb"
+  become: true
+
+  

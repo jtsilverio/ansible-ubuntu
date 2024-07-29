@@ -1,0 +1,10 @@
+- name: Install Chromium using Snap
+  community.general.snap:
+    name: chromium
+  become: true
+
+- name: Install Postman
+  community.general.snap:
+    name: postman
+  become: true
+

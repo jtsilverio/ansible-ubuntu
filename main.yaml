@@ -4,6 +4,7 @@
   vars:
     user_home: "/home/{{ ansible_user }}"
     user_name: "{{ ansible_user }}"
+    zsh_dependencies: []
 
   pre_tasks:
     - name: Ensure user directory variables are set
@@ -12,6 +13,13 @@
         user_name: "{{ ansible_user }}"
 
   tasks:
+    - name: Ensure Docker is started and enabled at boot
+      systemd:
+        name: docker
+        state: started
+        enabled: true
+      tags: docker
+
     - name: Install APT packages
       import_tasks: tasks/apt.yaml
 
@@ -47,3 +55,28 @@
     - name: firefox configs
       import_tasks: tasks/firefox.yaml
       tags: firefox
+  
+    - name: MEGA
+      import_tasks: tasks/mega.yaml
+      tags: mega
+
+    - name: Slack
+      import_tasks: tasks/slack.yaml
+      tags: slack
+
+    - name: snap
+      import_tasks: tasks/snap.yaml
+      tags: snap
+
+    - name: fly
+      import_tasks: tasks/fly.yaml
+      tags: fly
+
+
+  roles:
+    - role: geerlingguy.docker
+      vars:
+        docker_compose_version: "latest"  # This ensures Docker Compose is installed
+      tags: docker
+  
+  

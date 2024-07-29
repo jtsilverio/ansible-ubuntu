@@ -10,10 +10,6 @@
     - rofi
     - htop
     - neovim
-    - zsh
-    - fonts-inter
-    - fonts-firacode
-    - fonts-ibm-plex
     - gimp
     - dconf-cli
     - r-base
@@ -21,4 +17,6 @@
     - gnome-sushi
     - s-tui
     - calibre
-    - vainfo
+    - qgis
+    - qgis-plugin-grass
+    - vlc

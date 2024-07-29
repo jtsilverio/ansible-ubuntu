@@ -30,3 +30,13 @@
   flatpak:
     name: org.zotero.Zotero
     state: present
+
+- name: Install Logseq
+  flatpak:
+    name: com.logseq.Logseq
+    state: present
+
+- name: Install Logseq
+  flatpak:
+    name: org.gimp.GIMP
+    state: present
