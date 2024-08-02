@@ -11,32 +11,16 @@
 - name: Add Flathub repository
   command: flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
-- name: Install Telegram Desktop
+- name: Install Flatpak applications for user
+  vars:
+    flatpak_apps:
+      - org.telegram.desktop
+      - com.spotify.Client
+      - com.discordapp.Discord
+      - org.zotero.Zotero
+      - com.logseq.Logseq
+      - org.gimp.GIMP
   flatpak:
-    name: org.telegram.desktop
+    name: "{{ item }}"
     state: present
-
-- name: Install Spotify Client
-  flatpak:
-    name: com.spotify.Client
-    state: present
-
-- name: Install Discord
-  flatpak:
-    name: com.discordapp.Discord
-    state: present
-
-- name: Install Zotero
-  flatpak:
-    name: org.zotero.Zotero
-    state: present
-
-- name: Install Logseq
-  flatpak:
-    name: com.logseq.Logseq
-    state: present
-
-- name: Install Logseq
-  flatpak:
-    name: org.gimp.GIMP
-    state: present
+  with_items: "{{ flatpak_apps }}"
