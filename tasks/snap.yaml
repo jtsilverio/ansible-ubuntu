@@ -8,3 +8,7 @@
     name: postman
   become: true
 
+- name: Install Slack
+  community.general.snap:
+    name: slack
+  become: true
