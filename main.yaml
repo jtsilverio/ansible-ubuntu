@@ -63,10 +63,6 @@
       import_tasks: tasks/mega.yaml
       tags: mega
 
-    - name: Slack
-      import_tasks: tasks/slack.yaml
-      tags: slack
-
     - name: snap
       import_tasks: tasks/snap.yaml
       tags: snap
