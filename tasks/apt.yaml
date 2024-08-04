@@ -20,3 +20,4 @@
     - qgis
     - qgis-plugin-grass
     - vlc
+    - curl

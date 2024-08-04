@@ -13,6 +13,10 @@
         user_name: "{{ ansible_user }}"
 
   tasks:
+    - name: zsh
+      import_tasks: tasks/zsh.yaml
+      tags: zsh
+
     - name: Ensure Docker is started and enabled at boot
       systemd:
         name: docker
@@ -71,10 +75,9 @@
       import_tasks: tasks/fly.yaml
       tags: fly
 
-
-    - name: zsh
-      import_tasks: tasks/zsh.yaml
-      tags: zsh
+    - name: Dracula theme for Gnome Terminal
+      import_tasks: tasks/dracula-gterminal.yaml
+      tags: dracula
 
 
   roles:

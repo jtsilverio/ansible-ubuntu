@@ -8,5 +8,5 @@
       pref("font.name.monospace.x-western", "JetBrains Mono");
       pref("font.name.sans-serif.x-western", "Inter");
     marker: "// {mark} ANSIBLE MANAGED BLOCK"
-  become: yes
+  become: true
   become_method: sudo
