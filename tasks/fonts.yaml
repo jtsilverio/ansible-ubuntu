@@ -47,5 +47,21 @@
     path: "{{ user_home }}/.fonts/JetBrainsMono-1.0.0.zip"
     state: absent
 
+- name: Download Zed Mono font zip
+  get_url:
+    url: https://github.com/zed-industries/zed-fonts/releases/download/1.2.0/zed-mono-1.2.0.zip
+    dest: /tmp/zed-mono-1.2.0.zip
+
+- name: Unzip Zed Mono font
+  unarchive:
+    src: /tmp/zed-mono-1.2.0.zip
+    dest: "{{ user_home }}/.fonts"
+    remote_src: yes
+
+- name: Clean up ZED font zip file
+  file:
+    path: "/tmp/zed-mono-1.2.0.zip"
+    state: absent
+
 - name: Update font cache
   command: fc-cache -fv
