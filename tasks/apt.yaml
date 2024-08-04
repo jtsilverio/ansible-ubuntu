@@ -10,7 +10,6 @@
     - rofi
     - htop
     - neovim
-    - gimp
     - dconf-cli
     - r-base
     - pandoc

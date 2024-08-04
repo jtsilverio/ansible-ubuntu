@@ -3,43 +3,18 @@
     user_home: "/home/{{ ansible_user }}"
     user_name: "{{ ansible_user }}"
     
-- name: Install curl
-  apt:
-    name: curl
-    state: present
-  become: true
-
 - name: Check if Pyenv is installed
+  become: true
+  become_user: "{{ user_name }}"
   stat:
     path: "{{ user_home }}/.pyenv"
   register: pyenv_installed
 
 - name: Install Pyenv
+  become: true
+  become_user: "{{ user_name }}"
   shell: curl https://pyenv.run | bash
   args:
     executable: /bin/bash
   when: not pyenv_installed.stat.exists
 
-- name: Ensure Pyenv is loaded in .bashrc
-  blockinfile:
-    path: "{{ user_home }}/.bashrc"
-    marker: "# {mark} ANSIBLE MANAGED BLOCK"
-    block: |
-      # pyenv
-      export PYENV_ROOT="$HOME/.pyenv"
-      [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-      eval "$(pyenv init -)"
-      eval "$(pyenv virtualenv-init -)"
-    create: yes
-
-- name: Ensure Pyenv is loaded in .profile
-  blockinfile:
-    path: "{{ user_home }}/.profile"
-    marker: "# {mark} ANSIBLE MANAGED BLOCK"
-    block: |
-      # pyenv
-      export PYENV_ROOT="$HOME/.pyenv"
-      [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-      eval "$(pyenv init -)"
-      eval "$(pyenv virtualenv-init -)"
-    create: yes

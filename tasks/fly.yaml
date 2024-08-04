@@ -2,13 +2,3 @@
   shell: curl -L https://fly.io/install.sh | sh
   args:
     executable: /bin/bash
-
-- name: Ensure Flyctl environment variables are set in .bashrc
-  blockinfile:
-    path: "{{ user_home }}/.bashrc"
-    marker: "# {mark} ANSIBLE MANAGED BLOCK: flyctl"
-    block: |
-      # Flyctl environment variables
-      export FLYCTL_INSTALL="{{ user_home }}/.fly"
-      export PATH="$FLYCTL_INSTALL/bin:$PATH"
-  become: false

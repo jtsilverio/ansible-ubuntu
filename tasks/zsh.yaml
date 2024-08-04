@@ -7,16 +7,52 @@
 
 - name: Ensure zsh is the default shell
   user:
-    name: "{{ ansible_user }}"
+    name: "{{ user_name }}"
     shell: "/usr/bin/zsh"
   become: true
 
-- name: Download Oh My Zsh installation script
-  get_url:
-    url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
-    dest: /tmp/install_ohmyzsh.sh
+- name: Install Oh My Zsh
+  become: true
+  become_user: "{{ user_name }}"
+  shell: >
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  args:
+    creates: "/home/{{ user_name }}/.oh-my-zsh"
 
-- name: Run Oh My Zsh installation script
-  command: sh /tmp/install_ohmyzsh.sh --unattended
-  register: ohmyzsh_result
-  failed_when: "'FAILED' in ohmyzsh_result.stderr"
+- name: Change shell to Zsh
+  shell: chsh -s $(which zsh) "{{ user_name }}"
+  become: true
+  when: ansible_env.SHELL != "/bin/zsh"
+
+- name: Copy .zshrc to home directory
+  copy:
+    src: files/zsh/.zshrc
+    dest: "{{ user_home }}/.zshrc"
+    owner: "{{ user_name }}"
+    group: "{{ user_name }}"
+    mode: '0644'
+
+- name: Copy aliases to .oh-my-zsh/custom directory
+  copy:
+    src: files/zsh/aliases.zsh
+    dest: "{{ user_home }}/.oh-my-zsh/custom/aliases.zsh"
+    owner: "{{ user_name }}"
+    group: "{{ user_name }}"
+    mode: '0644'
+
+
+- name: Copy aliases to .oh-my-zsh/custom directory
+  copy:
+    src: files/zsh/tools.zsh
+    dest: "{{ user_home }}/.oh-my-zsh/custom/tools.zsh"
+    owner: "{{ user_name }}"
+    group: "{{ user_name }}"
+    mode: '0644'
+
+- name: Copy aliases to .oh-my-zsh/custom directory
+  copy:
+    src: files/zsh/vars.zsh
+    dest: "{{ user_home }}/.oh-my-zsh/custom/vars.zsh"
+    owner: "{{ user_name }}"
+    group: "{{ user_name }}"
+    mode: '0644'

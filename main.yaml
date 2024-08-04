@@ -75,10 +75,6 @@
       import_tasks: tasks/fly.yaml
       tags: fly
 
-    - name: Dracula theme for Gnome Terminal
-      import_tasks: tasks/dracula-gterminal.yaml
-      tags: dracula
-
 
   roles:
     - role: geerlingguy.docker

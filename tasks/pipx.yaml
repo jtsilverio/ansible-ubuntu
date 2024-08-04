@@ -6,22 +6,32 @@
   become: true
 
 - name: Ensure pipx path for current user
+  become: true
+  become_user: "{{ user_name }}"
   shell: pipx ensurepath
   args:
     executable: /bin/bash
 
 - name: Install pylint
+  become: true
+  become_user: "{{ user_name }}"
   community.general.pipx:
     name: pylint
 
 - name: Install black
+  become: true
+  become_user: "{{ user_name }}"
   community.general.pipx:
     name: black
 
 - name: Install ruff
+  become: true
+  become_user: "{{ user_name }}"
   community.general.pipx:
     name: ruff
 
 - name: Install dvc with s3 support
+  become: true
+  become_user: "{{ user_name }}"
   community.general.pipx:
     name: 'dvc[s3]'
