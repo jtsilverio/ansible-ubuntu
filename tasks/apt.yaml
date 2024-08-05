@@ -20,3 +20,14 @@
     - qgis-plugin-grass
     - vlc
     - curl
+
+- name: install python compilation dependencies
+  become: true
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - libssl-dev
+    - python3-tk
+    - tk-dev
+    - libsqlite3-dev

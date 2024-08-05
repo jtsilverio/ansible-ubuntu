@@ -35,3 +35,30 @@
   become_user: "{{ user_name }}"
   community.general.pipx:
     name: 'dvc[s3]'
+
+- name: Install PDM
+  become: true
+  become_user: "{{ user_name }}"
+  community.general.pipx:
+    name: 'pdm'
+
+- name: config PDM to use venv
+  become: true
+  become_user: "{{ user_name }}"
+  shell: pdm config venv.backend venv
+  args:
+    executable: /bin/bash
+
+- name: config PDM to install with pip
+  become: true
+  become_user: "{{ user_name }}"
+  shell: pdm config venv.with_pip True
+  args:
+    executable: /bin/bash
+
+- name: change PDM venv terminal prompt to only use python version
+  become: true
+  become_user: "{{ user_name }}"
+  shell: pdm config venv.prompt {python_version}
+  args:
+    executable: /bin/bash
