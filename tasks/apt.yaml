@@ -7,7 +7,6 @@
     - gnome-tweaks
     - gnome-shell-extensions
     - gnome-shell-extension-prefs
-    - rofi
     - htop
     - neovim
     - dconf-cli
@@ -31,3 +30,4 @@
     - python3-tk
     - tk-dev
     - libsqlite3-dev
+    - nala
