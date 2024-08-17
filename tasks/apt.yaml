@@ -19,6 +19,7 @@
     - qgis-plugin-grass
     - vlc
     - curl
+    - nala
 
 - name: install python compilation dependencies
   become: true
@@ -30,4 +31,3 @@
     - python3-tk
     - tk-dev
     - libsqlite3-dev
-    - nala
