@@ -7,7 +7,6 @@
     - gnome-tweaks
     - gnome-shell-extensions
     - gnome-shell-extension-prefs
-    - rofi
     - htop
     - neovim
     - dconf-cli
@@ -20,3 +19,4 @@
     - qgis-plugin-grass
     - vlc
     - curl
+    - nala

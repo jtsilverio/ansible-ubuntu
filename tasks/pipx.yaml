@@ -30,6 +30,12 @@
   community.general.pipx:
     name: ruff
 
+- name: Install PDM
+  become: true
+  become_user: "{{ user_name }}"
+  community.general.pipx:
+    name: pdm
+
 - name: Install dvc with s3 support
   become: true
   become_user: "{{ user_name }}"
