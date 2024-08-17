@@ -1,16 +1,13 @@
 
+- name: Set Ubuntu version variables
+  set_fact:
+    user_name: "{{ ansible_user }}"
+
 - name: Install pipx
   apt:
     name: pipx
     state: present
   become: true
-
-- name: Ensure pipx path for current user
-  become: true
-  become_user: "{{ user_name }}"
-  shell: pipx ensurepath
-  args:
-    executable: /bin/bash
 
 - name: Install pylint
   become: true
@@ -30,12 +27,6 @@
   community.general.pipx:
     name: ruff
 
-- name: Install PDM
-  become: true
-  become_user: "{{ user_name }}"
-  community.general.pipx:
-    name: pdm
-
 - name: Install dvc with s3 support
   become: true
   become_user: "{{ user_name }}"
@@ -49,22 +40,22 @@
     name: 'pdm'
 
 - name: config PDM to use venv
+  shell: /home/{{ user_name }}/.local/bin/pdm config venv.backend venv
   become: true
   become_user: "{{ user_name }}"
-  shell: pdm config venv.backend venv
   args:
-    executable: /bin/bash
+    executable: /bin/zsh
 
 - name: config PDM to install with pip
+  shell: /home/{{ user_name }}/.local/bin/pdm config venv.with_pip True
   become: true
   become_user: "{{ user_name }}"
-  shell: pdm config venv.with_pip True
   args:
-    executable: /bin/bash
+    executable: /bin/zsh
 
 - name: change PDM venv terminal prompt to only use python version
   become: true
   become_user: "{{ user_name }}"
-  shell: pdm config venv.prompt {python_version}
+  shell: /home/{{ user_name }}/.local/bin/pdm config venv.prompt {python_version}
   args:
-    executable: /bin/bash
+    executable: /bin/zsh

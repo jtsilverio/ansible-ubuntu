@@ -2,7 +2,7 @@
   set_fact:
     user_home: "/home/{{ ansible_user }}"
     user_name: "{{ ansible_user }}"
-    
+
 - name: Check if Pyenv is installed
   become: true
   become_user: "{{ user_name }}"
